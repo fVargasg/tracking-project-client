@@ -25,19 +25,16 @@ const showModalMessage = (type, error, player) => {
 
   switch (type) {
     case 'UserRegistrated':
-      $('#modal-message').text('Thank you for sign In. Tic Tac Toe Game :)');
+      $('#modal-message').text('Thank you for sign In. Project Tracker :)');
+      break;
+      case 'UserHasNotProjects':
+      $('#modal-message').text('You do not have projects created. Try to create a new project :)');
       break;
     case 'success':
       $('#modal-message').text('Your request was successful :)');
       break;
       case 'error':
       $('#modal-message').text(`Something went wrong :( error: ${JSON.stringify(error)}`);
-      break;
-    case 'userWon':
-      $('#modal-message').text(`${player} has won!`);
-      break;
-    case 'tie':
-      $('#modal-message').text('It is a tie');
       break;
     default:
       return;

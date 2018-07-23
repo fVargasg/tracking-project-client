@@ -7,7 +7,6 @@ const store = require('../store')
  * @param data Information of the user.
  */
 const signUp = function (data) {
-
   return $.ajax({
     url: config.apiUrl + '/sign-up',
     method: 'POST',
@@ -55,7 +54,7 @@ const changePassword = function (data) {
  * @param data Information of the user.
  */
 const signOut = function (data) {
-  //console.log(store.user.token);
+
   return $.ajax({
     url: config.apiUrl + '/sign-out',
     method: 'DELETE',

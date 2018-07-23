@@ -13,7 +13,7 @@ const onSignUp = function (event) {
   const data = getFormFields(this);
 
   ui.showProgress();
-
+  //console.log(data)
   api.signUp(data)
     .then(() => {
       clearFields(); ui.hideProgress();
@@ -35,9 +35,9 @@ const onSignIn = function (event) {
     api.signIn(data)
     .then((result) => {
       ui.hideProgress();
-      console.log(result)
+      //console.log(result)
       $('#user-photo').attr('src', result.user.photo);
-      $('#user-name').text(' Welcome, ' + result.user.name);
+      $('#user-name').text(' Hello, ' + result.user.name);
       $('#user-role').text('Role, ' + result.user.role);
       $('.wrapper').fadeIn();
       $('#manage-section').hide();
@@ -56,12 +56,12 @@ const onSignIn = function (event) {
 const onChangePassword = function (event) {
   event.preventDefault()
   const data = getFormFields(this);
-  $('#modal-change-password, .modal-backdrop').hide();
+
   ui.showProgress();
 
   api.changePassword(data)
     .then(() => {
-
+      $('#view-change-password').hide(); $('#card-user').fadeIn();
       ui.hideProgress(); ui.showModalMessage('success');
       //console.log('changing password in ran!')
     })
@@ -82,8 +82,8 @@ const onSignOut = function (event) {
     .then(() => {
 
       clearFields(); ui.hideProgress();
-      $('.wrapper').hide();
-      $('#manage-section').fadeIn();
+      $('.wrapper,#div-show-perfil').hide();
+      $('#manage-section,#div-main').fadeIn();
       store.user = null;
       //console.log('sign out ran!')
     })
