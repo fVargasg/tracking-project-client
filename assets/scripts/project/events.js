@@ -14,12 +14,12 @@ const showDashBoard = () => {
 const showUserProfile = () => {
   event.preventDefault()
 
-  ui.showProgress();
+  //ui.showProgress();
 
   api.showUserProfile()
     .then((result) => {
 
-      ui.hideProgress();
+      //ui.hideProgress();
       $('#show-dashboard').removeClass('active');
       $('#show-user-profile').addClass('active');
       $('#user-photo-profile').attr('src', result.user.photo);
@@ -32,7 +32,7 @@ const showUserProfile = () => {
 
     })
     .catch((error) => {
-      ui.hideProgress(); ui.showModalMessage('error', error);
+      ui.showModalMessage('error', error);
     });
 
 }
@@ -74,7 +74,7 @@ const showUserProjects = () => {
      .then((data) => {
 
        ui.hideProgress();
-       console.log(data)
+
        if(data.projects.length > 0) {
 
           $('#show-div-projects').fadeIn();
@@ -107,40 +107,7 @@ const showUserProjects = () => {
        ui.hideProgress(); ui.showModalMessage('error', error);
      });
 }
-const showViewEditProfile = () => {
-  $('#card-user').hide(); $('#view-edit-profile').fadeIn();$('#txt-name').focus();
-}
-const showViewChangePassword = () => {
-  $('#card-user').hide(); $('#view-change-password').fadeIn();$('#txt-old-password').focus();
-}
-const cancelChangePassword = () => {
-  $('#view-change-password,#view-edit-profile').hide(); $('#card-user').fadeIn();
-}
-const showViewEditProject = () => {
-  $('#div-details-project').hide(); $('#div-update-project').fadeIn();
-}
-const cancelEditProject = () => {
-  $('#div-update-project').hide(); $('#div-details-project').fadeIn();
-}
-/*modals*/
-/* create project modal */
-const showModalProject = () => {
 
-  $('#modal-create-project').modal({
-    backdrop: 'static',
-    keyboard: false
-  });
-  setTimeout(function(){ $('#txt-name-project').focus() }, 800);
-}
-/* create story modal */
-const showModalCreateStory = () => {
-
-  $('#modal-create-story').modal({
-    backdrop: 'static',
-    keyboard: false
-  });
-  setTimeout(function(){ $('#txt-name-story').focus() }, 800);
-}
 /* Projects */
 const createNewProject = (event) => {
   event.preventDefault()
@@ -199,7 +166,10 @@ const createNewStory = (event) => {
   let data = {
     "story": {
       "name": $('#txt-name-story').val(),
-      "story_id": _project_id,
+      "description": $('#txt-description-story').val(),
+      "typestory": $('#txt-type-story').val(),
+      "difficulty": $('#txt-difficulty-story').val(),
+      "project_id": _project_id,
     }
   }
 
@@ -227,7 +197,6 @@ const showProjectStories = () => {
      .then((result) => {
 
        ui.hideProgress();
-       console.log(result)
        if(result.stories.length > 0) {
 
           $('#show-div-stories').fadeIn();
@@ -321,6 +290,41 @@ const showStoryTasks = (storyid) => {
      .catch((error) => {
        ui.hideProgress(); ui.showModalMessage('error', error);
      });
+}
+// Misc
+const showViewEditProfile = () => {
+  $('#card-user').hide(); $('#view-edit-profile').fadeIn();$('#txt-name').focus();
+}
+const showViewChangePassword = () => {
+  $('#card-user').hide(); $('#view-change-password').fadeIn();$('#txt-old-password').focus();
+}
+const cancelChangePassword = () => {
+  $('#view-change-password,#view-edit-profile').hide(); $('#card-user').fadeIn();
+}
+const showViewEditProject = () => {
+  $('#div-details-project').hide(); $('#div-update-project').fadeIn();
+}
+const cancelEditProject = () => {
+  $('#div-update-project').hide(); $('#div-details-project').fadeIn();
+}
+/*modals*/
+/* create project modal */
+const showModalProject = () => {
+
+  $('#modal-create-project').modal({
+    backdrop: 'static',
+    keyboard: false
+  });
+  setTimeout(function(){ $('#txt-name-project').focus() }, 800);
+}
+/* create story modal */
+const showModalCreateStory = () => {
+
+  $('#modal-create-story').modal({
+    backdrop: 'static',
+    keyboard: false
+  });
+  setTimeout(function(){ $('#txt-name-story').focus() }, 800);
 }
 
 /* clear fields */

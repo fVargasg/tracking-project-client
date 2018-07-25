@@ -80,7 +80,8 @@ const onSignOut = function (event) {
 
   api.signOut(data)
     .then(() => {
-
+      $('#show-dashboard').addClass('active');
+      $('#show-user-profile').removeClass('active');
       clearFields(); ui.hideProgress();
       $('.wrapper,#div-show-perfil,#div-details-project,#show-div-projects').hide();
       $('#manage-section,#div-main').fadeIn();
