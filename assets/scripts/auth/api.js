@@ -41,10 +41,12 @@ const changePassword = function (data) {
   return $.ajax({
     url: config.apiUrl + '/change-password',
     method: 'PATCH',
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
     headers: {
       Authorization: 'Token token=' + store.user.token
     },
-    data
+    data: JSON.stringify(data)
   })
 }
 
