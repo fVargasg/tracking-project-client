@@ -82,7 +82,7 @@ const onSignOut = function (event) {
     .then(() => {
 
       clearFields(); ui.hideProgress();
-      $('.wrapper,#div-show-perfil').hide();
+      $('.wrapper,#div-show-perfil,#div-details-project,#show-div-projects').hide();
       $('#manage-section,#div-main').fadeIn();
       store.user = null;
       //console.log('sign out ran!')

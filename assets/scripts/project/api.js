@@ -73,9 +73,115 @@ const createProject = function (data) {
   });
 
 }
+/**
+ * Request to the api to update a project.
+ *
+ * @param data  {Object} Object project with all its properties.
+ *
+ * Return a promise.
+ */
+const updateProject = function (data) {
+
+  return $.ajax({
+    url: config.apiUrl + '/projects/' + data.project.id,
+    method: 'PATCH',
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: JSON.stringify(data)
+  });
+
+}
+/**
+ * Request to the api to get a project's stories.
+ *
+ * @param data  {Object} Object project with all its properties.
+ *
+ * Return a promise.
+ */
+const getProjectStories = function (projectId) {
+
+  return $.ajax({
+    url: config.apiUrl + '/stories/' + projectId,
+    method: 'GET',
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  });
+
+}
+/**
+ * Create a new story
+ */
+/**
+ * Request to the api to create a project's story.
+ *
+ * @param data  {Object} Object story with all its properties.
+ *
+ * Return a promise.
+ */
+const createStory = function (data) {
+
+  return $.ajax({
+    url: config.apiUrl + '/stories',
+    method: 'POST',
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: JSON.stringify(data)
+  });
+
+}
+/**
+ * Create a new task
+ */
+const createTask = function (data) {
+
+  return $.ajax({
+    url: config.apiUrl + '/tasks',
+    method: 'POST',
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: JSON.stringify(data)
+  });
+
+}
+/**
+ * Request to the api to get a story's tasks.
+ *
+ * Return a promise.
+ */
+const getStoryTasks = function (story_Id) {
+
+  return $.ajax({
+    url: config.apiUrl + '/tasks/' + story_Id,
+    method: 'GET',
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  });
+
+}
+
 module.exports = {
   showUserProfile,
   updateUser,
   getUserProjects,
-  createProject
+  createProject,
+  updateProject,
+  getProjectStories,
+  createStory,
+  createTask,
+  getStoryTasks
 }
