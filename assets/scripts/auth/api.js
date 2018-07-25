@@ -27,7 +27,7 @@ const signIn = function (data) {
     url: config.apiUrl + '/sign-in',
     method: 'POST',
     contentType: "application/json; charset=utf-8",
-    dataType: "json",
+    dataType: "jsonp",
     data: JSON.stringify(data)
   });
 
