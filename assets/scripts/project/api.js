@@ -29,7 +29,7 @@ const updateUser = function (data) {
 
   return $.ajax({
     url: config.apiUrl + '/users/' + store.user.id,
-    method: 'PATCH',
+    method: 'PUT',
     contentType: "application/json; charset=utf-8",
     dataType: "json",
     headers: {
@@ -84,7 +84,7 @@ const updateProject = function (data) {
 
   return $.ajax({
     url: config.apiUrl + '/projects/' + data.project.id,
-    method: 'PATCH',
+    method: 'PUT',
     contentType: "application/json; charset=utf-8",
     dataType: "json",
     headers: {
