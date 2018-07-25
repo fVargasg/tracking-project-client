@@ -9,3 +9,5 @@ require('./assets/scripts/index.js')
 
 // styles
 require('./assets/styles/index.scss')
+require('https://fonts.googleapis.com/css?family=Montserrat:400,700,200')
+require('https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css')
