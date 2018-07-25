@@ -40,7 +40,7 @@ const signIn = function (data) {
 const changePassword = function (data) {
   return $.ajax({
     url: config.apiUrl + '/change-password',
-    method: 'PATCH',
+    method: 'PUT',
     contentType: "application/x-www-form-urlencoded",
     dataType: "json",
     headers: {
