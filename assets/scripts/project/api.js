@@ -95,6 +95,26 @@ const updateProject = function (data) {
 
 }
 /**
+ * Request to the api to delete a project.
+ *
+ * @param project_id  {Integer} Project id.
+ *
+ * Return a promise.
+ */
+const deleteProject = function (project_id) {
+
+  return $.ajax({
+    url: config.apiUrl + '/projects/' + project_id,
+    method: 'DELETE',
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  });
+
+}
+/**
  * Request to the api to get a project's stories.
  *
  * @param data  {Object} Object project with all its properties.
@@ -180,6 +200,7 @@ module.exports = {
   getUserProjects,
   createProject,
   updateProject,
+  deleteProject,
   getProjectStories,
   createStory,
   createTask,

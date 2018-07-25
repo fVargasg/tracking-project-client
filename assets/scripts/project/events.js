@@ -82,13 +82,13 @@ const showUserProjects = () => {
 
           $.each(data.projects, (index, element) => {
 
-          $('#table-projects > tbody').append('<tr><td>' + element.id + '</td><td>' + element.name + '</td><td>' + element.description + '</td><td><span class="text-info">' + element.status + '</span></td><td><button id="btn-select-project' + index + '" type="button" class="btn btn-danger btn-fill btn-xs pull-right"><i class="fa fa-clone"></i>Show details</button></td></tr>');
+          $('#table-projects > tbody').append('<tr><td>' + element.id + '</td><td>' + element.name + '</td><td>' + element.description + '</td><td><span class="text-info">' + element.status + '</span></td><td><button id="btn-select-project' + index + '" type="button" class="btn btn-danger btn-fill btn-xs pull-right"><i class="fa fa-clone"></i>Show details</button><button id="btn-delete-project' + index + '" type="button" class="btn btn-danger btn-fill btn-xs pull-right"><i class="fa fa-close"></i>Delete</button></td></tr>');
 
 
             $('#btn-select-project' + index).click(function (e) {
                 e.preventDefault();
                 $('#div-main,#show-div-stories').hide(); $('#div-details-project').fadeIn();
-                $('#span-project-name').html('<i class="fa fa-file-powerpoint-o icon-project" aria-hidden="true"></i>&nbsp;' + element.name);
+                $('#span-project-name').html('<i class="fa fa-file-powerpoint-o icon-project" aria-hidden="true"></i>&nbsp; ' + element.name);
 
                 _project_id = element.id;
 
@@ -96,7 +96,18 @@ const showUserProjects = () => {
                 $('#txt-description-project-update').val(element.description);
                 $('#txt-status-project-update').val(element.status);
             });
+
+            $('#btn-delete-project' + index).click(function (e) {
+              e.preventDefault();
+
+              $('#project-delete-name').html('<i class="fa fa-file-powerpoint-o text-danger" aria-hidden="true"></i>&nbsp;' + element.name);
+              ui.showModalConfirm();
+
+              _project_id = element.id;
+
           });
+
+        });
 
        } else {
         ui.showModalMessage('UserHasNotProjects');
@@ -151,6 +162,19 @@ const updateProject = (event) => {
   api.updateProject(data)
     .then((result) => {
       cancelEditProject();
+      showUserProjects();
+      ui.showModalMessage('success');
+    })
+    .catch((error) => {
+      ui.hideProgress(); ui.showModalMessage('error', error);
+    });
+
+}
+const deleteProject = () => {
+
+  ui.showProgress();
+  api.deleteProject(_project_id)
+    .then((result) => {
       showUserProjects();
       ui.showModalMessage('success');
     })
@@ -352,6 +376,7 @@ const addHandlers = () => {
   $('#show-view-edit-project').on('click', showViewEditProject)
   $('#cancel-edit-project').on('click', cancelEditProject)
   $('#update-project-form').on('submit', updateProject);
+  $('#delete-project').on('click', deleteProject);
 
   // project stories
   $('#show-project-stories').on('click', showProjectStories);
