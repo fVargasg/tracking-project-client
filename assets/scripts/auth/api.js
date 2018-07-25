@@ -42,7 +42,7 @@ const changePassword = function (data) {
     url: config.apiUrl + '/change-password',
     method: 'PATCH',
     contentType: "application/json; charset=utf-8",
-    dataType: "json",
+    dataType: "jsonp",
     headers: {
       Authorization: 'Token token=' + store.user.token
     },
