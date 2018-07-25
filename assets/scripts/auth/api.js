@@ -41,7 +41,7 @@ const changePassword = function (data) {
   return $.ajax({
     url: config.apiUrl + '/change-password',
     method: 'PUT',
-    contentType: "application/x-www-form-urlencoded",
+    contentType: "application/json; charset=utf-8",
     dataType: "json",
     headers: {
       Authorization: 'Token token=' + store.user.token
