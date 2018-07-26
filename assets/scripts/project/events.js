@@ -84,7 +84,6 @@ const showUserProjects = () => {
 
           $('#table-projects > tbody').append('<tr><td>' + element.id + '</td><td>' + element.name + '</td><td>' + element.description + '</td><td><span class="text-info">' + element.status + '</span></td><td><button id="btn-select-project' + index + '" type="button" class="btn btn-danger btn-fill btn-xs pull-right"><i class="fa fa-clone"></i>Show details</button><button id="btn-delete-project' + index + '" type="button" class="btn btn-danger btn-fill btn-xs pull-right"><i class="fa fa-close"></i>Delete</button></td></tr>');
 
-
             $('#btn-select-project' + index).click(function (e) {
                 e.preventDefault();
                 $('#div-main,#show-div-stories').hide(); $('#div-details-project').fadeIn();
@@ -105,7 +104,7 @@ const showUserProjects = () => {
 
               _project_id = element.id;
 
-          });
+            });
 
         });
 

@@ -1,33 +1,53 @@
 [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
 # tracking-project-client
+A web site to manage projects online.
+This project is consuming an api developed using Ruby on Rails.
+## User stories
 
-A clientto consume the tracking-project-api. 
+- `Users can sign up`
+- `Users can sign in`
+- `Users can change their password`
+- `Users can view their profiles`
+- `Users can edit their profiles, change foto, edit name ect.`
 
-## Installation
+- `Users can create projects`
+- `Users can view list of projects`
+- `Users can edit information of projects`
+- `Users can delete projects`
+- `Users can create stories associates to projects`
+- `Users can create tasks associates to stories`
+- `Users can view list of stories`
+- `Users can create tasks associates to stories`
+- `Users can view list of tasks`
 
+## Wireframes
 
+- `Dashboard` https://imgur.com/KmWAXm8 
+- `Account` https://imgur.com/gv9Mp6D
 
-## Structure
+## Used tecnologies
 
+- `Html`
+- `Css`
+- `Boostrap`
+- `JavaScript`
+- `Jquery`
+- `Ajax`
 
+Built With Jquery Bootstrap Html Ajax Javascripts Css3 SASS
 
-## Tasks
+I used HTML5 to build the basic structure of the app and CSS3, SASS and Bootstrap to style.
 
-Developers should run these often!
+The forms and modals were done using Bootstrap.
 
-- `grunt nag` or just `grunt`: runs code quality analysis tools on your code
-    and complains
-- `grunt make-standard`: reformats all your code in the JavaScript Standard Style
-- `grunt <server|serve|s>`: generates bundles, watches, and livereloads
-- `grunt test`: runs any automated tests, depends on `grunt build`
-- `grunt build`: place bundled styles and scripts where `index.html` can find
-    them
+Javascript is used to send AJAX calls and jQuery is used to interact with the DOM and update the view 
 
-## Additional Resources
+## Author
 
-- [Modern Javascript Explained for Dinosaurs](https://medium.com/@peterxjang/modern-javascript-explained-for-dinosaurs-f695e9747b70)
-- [Making Sense of Front End Build Tools](https://medium.freecodecamp.org/making-sense-of-front-end-build-tools-3a1b3a87043b)
+- `Fausto Vargas`
+
+- `Version 1.0`
 
 ## [License](LICENSE)
 
