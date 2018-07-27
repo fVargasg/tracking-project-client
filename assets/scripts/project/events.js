@@ -106,7 +106,7 @@ const showUserProjects = () => {
 
             });
 
-        });
+         });
 
        } else {
         ui.showModalMessage('UserHasNotProjects');

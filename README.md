@@ -1,8 +1,28 @@
 [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
 # tracking-project-client
+
 A web site to manage projects online.
 This project is consuming an api developed using Ruby on Rails.
+
+## Links
+
+Client project : https://fvargasg.github.io/tracking-project-client
+Api project    : https://secret-meadow-81980.herokuapp.com
+
+## Development process and problem-solving strategy
+
+I create user stories that the project was goint to have.
+I create Entity Relationship Diagram (ERD) thar the project was goind to have.
+I create the neccesary wire frames for the project.
+
+I started the backend api first and then the front end client.
+
+I deployed both projects online.
+
+
+## List unsolved problems
+ There is not more features to implement in the future.
 ## User stories
 
 - `Users can sign up`
