@@ -3,12 +3,13 @@
 # tracking-project-client
 
 A web site to manage projects online.
-This project is consuming an api developed using Ruby on Rails.
+
+- `This was my second project at General Assembly boot camp and consists of developing a client app to consume an api develped with Ruby on Rails.`
 
 ## Links
 
-Client project : https://fvargasg.github.io/tracking-project-client
-Api project    : https://secret-meadow-81980.herokuapp.com
+- `Client project :`  https://fvargasg.github.io/tracking-project-client
+- `Api project    :` https://secret-meadow-81980.herokuapp.com
 
 ## Development process and problem-solving strategy
 
