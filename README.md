@@ -4,7 +4,7 @@
 
 A web site to manage projects online.
 
-- `This was my second project at General Assembly boot camp and consists of developing a client app to consume an api develped with Ruby on Rails.`
+- `This was my second project at General Assembly boot camp and consists of developing a client app to consume an api developed with Ruby on Rails.`
 
 ## Links
 
