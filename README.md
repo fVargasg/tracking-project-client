@@ -13,9 +13,9 @@ A web site to manage projects online.
 
 ## Development process and problem-solving strategy
 
-I create user stories that project was going to have.
-I create Entity Relationship Diagram (ERD) tha project was going to have.
-I create the neccesary wire frames for the project.
+I created user stories that project was going to have.
+I created Entity Relationship Diagram (ERD) tha project was going to have.
+I created the neccesary wire frames for the project.
 
 I started the backend api first and then the front end client.
 
