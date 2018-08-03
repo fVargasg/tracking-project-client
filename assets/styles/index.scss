@@ -6,12 +6,13 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 .manage {
   position: relative;
   width: 100%;
-  padding-bottom: 140px;
+  //padding-bottom: 140px;
 
   //background: url(../img/bg-pattern.png),#7b4397;
   background: url(../img/bg-pattern.png),rgb(68, 67, 67);
   // background: url(../img/bg-pattern.png),-webkit-linear-gradient(to left,#7b4397,#dc2430);
   // background: url(../img/bg-pattern.png),linear-gradient(to left,#7b4397,#dc2430);
+  height: calc(100vh);
 }
 .icon-project {
   float: left;
