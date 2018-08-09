@@ -10,44 +10,7 @@
   <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
 </head>
 <body>
-  <div class="wrapper" style="display: none">
-    <div class="sidebar" data-color="red" data-image="assets/img/sidebar-1.jpg">
-      <div class="sidebar-wrapper">
-        <div class="logo">
-          <a href="#" class="simple-text" style="margin-bottom: 10px">
-            <!-- <div class="logo-img pull-left"></div> -->
-            <div style="margin-left: 20px">
-              <span>Surveys</span>
-            </div>
-          </a>
-        </div>
-        <div class="logo">
-          <img id="user-photo" class="photo-user" src="" />&nbsp;
-          <span id="user-name"></span>
-        </div>
-        <ul class="nav">
-          <li id="show-user-surveys" class="active">
-            <a href="#">
-                <i class="fa fa-television" aria-hidden="true"></i>
-              <p>My surveys</p>
-            </a>
-          </li>
-          <li id="show-modal-create-survey">
-            <a href="#">
-              <i class="fa fa-plus"></i>
-              <p>Create survey</p>
-            </a>
-          </li>
-
-          <li id="show-user-profile">
-            <a href="#">
-              <i class="fa fa-user-o"></i>
-              <p>My Profile</p>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+  <div class="wrapper">
     <div class="main-panel">
       <nav class="navbar navbar-default navbar-fixed">
         <div class="container-fluid">
@@ -59,20 +22,7 @@
               <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#">
-              <i class="fa fa-bars" aria-hidden="true"></i> Dashboard</a>
-          </div>
-          <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-              <li>
-                <a href="#" id="user-role">
-                </a>
-              </li>
-              <li>
-                <a href="#" id="sign-out">
-                  <i class="fa fa-sign-out"></i> Log out
-                </a>
-              </li>
-            </ul>
+              <i class="fa fa-bars" aria-hidden="true"></i> Complete this survey</a>
           </div>
         </div>
       </nav>
@@ -335,90 +285,6 @@
       </footer>
     </div>
   </div>
-  <!-- Account section -->
-  <div id="manage-section" class="manage">
-    <div class="logo">
-      <br />
-      <br />
-      <a href="#" class="simple-text">
-        <div class="logo-img-start pull-left" style="margin-top: -10px; margin-right: 8px"></div>
-        <div>
-          <span style="font-size: 24px; display: block; color: #fff">roject-Tracker</span>
-        </div>
-      </a>
-    </div>
-    <!-- container-fluid -->
-    <div id="div-content-account" class="container-fluid">
-      <div class="col-md-1"></div>
-      <div class="col-md-6 top-40">
-        <h2 style="color: #fff; margin-top: 100px; margin-right: 40px">Welcome to
-          <b style="color:#FF5722">Project Tracker</b> The best way to manage your projects online!</h2>
-        <div class="footer shadow" style="background-color: transparent; width: 202px; margin-top: 210px; color: #fff">
-          Design by
-          <i class="fa fa-street-view" aria-hidden="true"></i> Fausto Vargas
-        </div>
-      </div>
-      <div id="account-form" class="col-md-3 shadow top-40" style="min-height: 552px; margin-left: 40px">
-        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
-          <ul class="nav nav-tabs" id="myTabs" role="tablist">
-            <li role="presentation" class="active">
-              <a href="#home" class="font-16" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Sign Up</a>
-            </li>
-            <li role="presentation" class="">
-              <a href="#profile" class="font-16" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">Log In</a>
-            </li>
-          </ul>
-          <div class="tab-content" id="myTabContent">
-            <!-- sign in -->
-            <div class="tab-pane fade active in" role="tabpanel" id="home" aria-labelledby="home-tab">
-
-              <form id="sign-up" class="form-signup">
-                <br>
-                <label class="label-form">Name</label>
-                <input type="hidden" name="credentials[role]" value="Administrator">
-                <input type="hidden" name="credentials[photo]" value="https://images.unsplash.com/photo-1506085452766-c330853bea50?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c90ef12b4dc22a4a4c277dd056dd0b7e&auto=format&fit=crop&w=1050&q=80">
-                <input type="text" name="credentials[name]" class="form-control" placeholder="Name">
-                <label class="label-form">Email address</label>
-                <input type="email" name="credentials[email]" class="form-control" placeholder="Email address">
-                <label class="label-form">Password</label>
-                <input type="password" name="credentials[password]" class="form-control" placeholder="Password">
-                <label class="label-form">Confirm password</label>
-                <input type="password" name="credentials[password_confirmation]" class="form-control" placeholder="Confirm password">
-                <br />
-                <br />
-                <button class="btn btn-lg btn-danger btn-fill btn-block" type="submit">Sign in</button>
-                <br />
-              </form>
-            </div>
-            <!-- ./ sign in -->
-            <!-- log in -->
-            <div class="tab-pane fade" role="tabpanel" id="profile" aria-labelledby="profile-tab">
-              <form id="sign-in" class="form-login">
-                <br />
-                <h4 class="form-signin-heading">Please log in</h4>
-                <label class="label-form">Email address</label>
-                <input type="email" name="credentials[email]" class="form-control" placeholder="Email address" required="" autofocus="">
-                <label class="label-form">Password</label>
-                <input type="password" name="credentials[password]" class="form-control" placeholder="Password" required="">
-                <br />
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" value="remember-me"> Remember me
-                  </label>
-                </div>
-                <br />
-                <button class="btn btn-lg btn-danger btn-fill btn-block" type="submit">Log in</button>
-                <br />
-              </form>
-            </div>
-            <!-- ./log in -->
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /.container-fluid -->
-  </div>
-  <!-- end Account section -->
   <!-- message modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -487,118 +353,9 @@
       </div>
     </div>
   </div>
-  <!-- create story modal -->
-  <div class="modal fade" id="modal-create-story" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-sm" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title font-20" id="myModalLabel">
-            <i class="fa fa-sliders text-danger" aria-hidden="true"></i>&nbsp; Create story</h4>
-        </div>
-        <div class="modal-body">
-          <form id="create-story-form" class="form-signup">
-            <label class="label-form">Name</label>
-            <input id="txt-name-story" type="text" maxlength="30" class="form-control" placeholder="Project name">
-            <label class="label-form">Description</label>
-            <input id="txt-description-story" type="text" class="form-control" placeholder="Description">
-            <label class="label-form">Type</label>
-            <input id="txt-type-story" type="text" class="form-control" placeholder="Type" />
-            <label class="label-form">Difficulty</label>
-            <input id="txt-difficulty-story" type="text" class="form-control" placeholder="Difficulty" />
-            <br />
-            <br />
-            <button class="btn btn-danger btn-fill" type="submit">
-              <i class="fa fa-check"></i> Create story</button>
-            <button data-dismiss="modal" class="btn btn-default btn-simple" type="button">Cancel</button>
-            <br />
-            <br />
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- create task modal -->
-  <div class="modal fade" id="modal-create-task" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-sm" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title font-20" id="myModalLabel">
-            <i class="fa fa-sliders text-danger" aria-hidden="true"></i>&nbsp; Create task</h4>
-        </div>
-        <div class="modal-body">
-          <form id="create-task-form" class="form-signup">
-            <label class="label-form">Name</label>
-            <input id="txt-name-task" type="text" maxlength="40" class="form-control" placeholder="Task name">
-            <br />
-            <br />
-            <button class="btn btn-danger btn-fill" type="submit">
-              <i class="fa fa-check"></i> Create task</button>
-            <button data-dismiss="modal" class="btn btn-default btn-simple" type="button">Cancel</button>
-            <br />
-            <br />
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- show task modal -->
-  <div class="modal fade" id="modal-show-tasks" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-sm" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title font-20" id="myModalLabel">
-            <i class="fa fa-sliders text-danger" aria-hidden="true"></i>&nbsp; Story tasks</h4>
-        </div>
-        <div class="modal-body">
-          <table id="table-story-tasks" class="table table-hover">
-            <thead>
-              <tr>
-                <td style="width: 1%">
-                  <input type="checkbox">
-                </td>
-                <td style="font-weight:600">Name</td>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-        <div class="modal-footer">
-          <button data-dismiss="modal" class="btn btn-danger btn-fill" type="button">Cerrar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="confirm-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title font-20" id="myModalLabel">
-            <i class="fa fa-ravelry text-danger" aria-hidden="true"></i>&nbsp; Project tracker</h4>
-        </div>
-        <div class="modal-body">
-          <span class="font-20">Are you sure that you want to delete this project?</span>
-          <h4 id="project-delete-name"></h4>
-        </div>
-        <div class="modal-footer">
-          <button id="delete-project" type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Accept</button>
-          <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancel</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ./ progress modal -->
+
+
+  <!-- / progress modal -->
   <div class="modal fade" id="modal-progress" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-sm-progress" role="document">
       <div class="modal-content">

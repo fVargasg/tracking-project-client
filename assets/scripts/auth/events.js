@@ -2,6 +2,7 @@ const getFormFields = require('../../../lib/get-form-fields');
 const api = require('./api');
 const store = require('../store');
 const ui = require('../ui/ui');
+const project = require('../project/events')
 
 /**
  * Register the user.
@@ -42,6 +43,7 @@ const onSignIn = function (event) {
       $('.wrapper').fadeIn();
       $('#manage-section').hide();
       store.user = result.user;
+      project.showUserSurveys();
       //console.log('sign In ran!');
 
     })

@@ -40,13 +40,12 @@ const updateUser = function (data) {
 
 }
 /**
- * Show the user's projects.
+ * Show the user's surveys.
  *
  */
-const getUserProjects = function () {
-
+const getUserSurveys = function () {
   return $.ajax({
-    url: config.apiUrl + '/projects',
+    url: config.apiUrl + '/surveys',
     method: 'GET',
     contentType: "application/json; charset=utf-8",
     dataType: "json",
@@ -57,12 +56,12 @@ const getUserProjects = function () {
 
 }
 /**
- * Create a new project
+ * Create a new survey
  */
-const createProject = function (data) {
+const createSurvey = function (data) {
 
   return $.ajax({
-    url: config.apiUrl + '/projects',
+    url: config.apiUrl + '/surveys',
     method: 'POST',
     contentType: "application/json; charset=utf-8",
     dataType: "json",
@@ -73,6 +72,18 @@ const createProject = function (data) {
   });
 
 }
+const getSurveyQuestions = function (id) {
+  return $.ajax({
+    url: config.apiUrl + '/questions/' + id,
+    method: 'GET',
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  });
+}
+
 /**
  * Request to the api to update a project.
  *
@@ -134,20 +145,25 @@ const getProjectStories = function (projectId) {
   });
 
 }
-/**
- * Create a new story
- */
-/**
- * Request to the api to create a project's story.
- *
- * @param data  {Object} Object story with all its properties.
- *
- * Return a promise.
- */
-const createStory = function (data) {
+
+const createQuestions = function (data) {
 
   return $.ajax({
-    url: config.apiUrl + '/stories',
+    url: config.apiUrl + '/questions',
+    method: 'POST',
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: JSON.stringify(data)
+  });
+
+}
+const createResponses = function (data) {
+
+  return $.ajax({
+    url: config.apiUrl + '/responses',
     method: 'POST',
     contentType: "application/json; charset=utf-8",
     dataType: "json",
@@ -197,12 +213,14 @@ const getStoryTasks = function (story_Id) {
 module.exports = {
   showUserProfile,
   updateUser,
-  getUserProjects,
-  createProject,
+  getUserSurveys,
+  createSurvey,
+  getSurveyQuestions,
   updateProject,
   deleteProject,
   getProjectStories,
-  createStory,
+  createQuestions,
+  createResponses,
   createTask,
   getStoryTasks
 }

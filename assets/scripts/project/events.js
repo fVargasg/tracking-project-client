@@ -4,13 +4,8 @@ const ui = require('../ui/ui');
 let _project_id = 0,
     _story_id = 0;
 
+let _survey_id = null;
 
-const showDashBoard = () => {
-  $('#show-dashboard').addClass('active');
-  $('#show-user-profile').removeClass('active');
-  $('#div-main').fadeIn();
-  $('#div-show-perfil,#div-details-project').hide();
-}
 const showUserProfile = () => {
   event.preventDefault()
 
@@ -66,50 +61,40 @@ const updateUserProfile = (event) => {
     });
 
 }
-const showUserProjects = () => {
+const showUserSurveys = () => {
 
   ui.showProgress();
 
-  api.getUserProjects()
+  api.getUserSurveys()
      .then((data) => {
 
        ui.hideProgress();
+       $('body').removeClass('modal-open');
+       $('.modal-backdrop').remove();
+       if(data.surveys.length > 0) {
 
-       if(data.projects.length > 0) {
+        $('#table-surveys > tbody').empty();
+        $('#show-div-surveys').fadeIn();
 
-          $('#show-div-projects').fadeIn();
-          $('#table-projects > tbody').empty();
+          $.each(data.surveys, (index, element) => {
 
-          $.each(data.projects, (index, element) => {
+            $('#table-surveys > tbody').append('<tr><td>' + element._id + '</td><td><span class="text-info">' + element.name + '</span></td><td><a href=' + element.link + ' target="_blank"' + '>Send link</a></td><td><span class="text-info">' + element.status + '</span></td><td><button id="btn-select-project' + index + '" type="button" class="btn btn-danger btn-fill btn-xs pull-right"><i class="fa fa-clone"></i>Show details</button></td></tr>');
 
-          $('#table-projects > tbody').append('<tr><td>' + element.id + '</td><td>' + element.name + '</td><td>' + element.description + '</td><td><span class="text-info">' + element.status + '</span></td><td><button id="btn-select-project' + index + '" type="button" class="btn btn-danger btn-fill btn-xs pull-right"><i class="fa fa-clone"></i>Show details</button><button id="btn-delete-project' + index + '" type="button" class="btn btn-danger btn-fill btn-xs pull-right"><i class="fa fa-close"></i>Delete</button></td></tr>');
+              $('#btn-select-project' + index).click(function (e) {
+                  e.preventDefault();
+                  $('#div-main,#show-div-stories').hide(); $('#div-details-survey').fadeIn();
+                  $('#span-survey-name').html('<i class="fa fa-file-powerpoint-o icon-project" aria-hidden="true"></i>&nbsp; ' + element.name);
 
-            $('#btn-select-project' + index).click(function (e) {
-                e.preventDefault();
-                $('#div-main,#show-div-stories').hide(); $('#div-details-project').fadeIn();
-                $('#span-project-name').html('<i class="fa fa-file-powerpoint-o icon-project" aria-hidden="true"></i>&nbsp; ' + element.name);
+                  _survey_id = element._id;
 
-                _project_id = element.id;
-
-                $('#txt-name-project-update').val(element.name);
-                $('#txt-description-project-update').val(element.description);
-                $('#txt-status-project-update').val(element.status);
-            });
-
-            $('#btn-delete-project' + index).click(function (e) {
-              e.preventDefault();
-
-              $('#project-delete-name').html('<i class="fa fa-file-powerpoint-o text-danger" aria-hidden="true"></i>&nbsp;' + element.name);
-              ui.showModalConfirm();
-
-              _project_id = element.id;
-
-            });
-
+                  // $('#txt-name-project-update').val(element.name);
+                  // $('#txt-description-project-update').val(element.description);
+                  // $('#txt-status-project-update').val(element.status);
+              });
          });
 
        } else {
-        ui.showModalMessage('UserHasNotProjects');
+        $('#show-div-surveys').hide();
        }
 
      })
@@ -117,34 +102,36 @@ const showUserProjects = () => {
        ui.hideProgress(); ui.showModalMessage('error', error);
      });
 }
-
-/* Projects */
-const createNewProject = (event) => {
+/* Surveys */
+const createNewSurvey = (event) => {
   event.preventDefault()
 
   let data = {
-    "project": {
-      "name": $('#txt-name-project').val(),
-      "description": $('#txt-description-project').val(),
-      "status": $('#txt-status-project').val()
+    "survey": {
+      "name": $('#txt-name-survey').val(),
+      "link": "localhost:4741/survey.html",
+      "status": "Active"
     }
   }
 
-  $('#modal-create-project').modal('hide');
-  $('body').removeClass('modal-open');
-  $('.modal-backdrop').remove();
-
+  // $('#modal-create-project').modal('hide');
+  // $('body').removeClass('modal-open');
+  // $('.modal-backdrop').remove();
+  $('#create-survey-form').hide(); $('#create-survey-questions').fadeIn(); $('#txt-question-one').focus();
   ui.showProgress();
 
-  api.createProject(data)
+  api.createSurvey(data)
     .then((result) => {
-      clearFields(); showUserProjects();
-      ui.hideProgress();ui.showModalMessage('success');
+      _survey_id = result.survey._id;
+      ui.hideProgress();
     })
     .catch((error) => {
       ui.hideProgress(); ui.showModalMessage('error', error);
     });
 
+}
+const showUsserSurveys = () => {
+  $('#div-main').fadeIn(); $('#div-details-survey,#div-detail').hide();
 }
 const updateProject = (event) => {
   event.preventDefault()
@@ -182,35 +169,69 @@ const deleteProject = () => {
     });
 
 }
-/* stories */
-const createNewStory = (event) => {
+/* questions */
+const createQuestions = (event) => {
   event.preventDefault()
 
   let data = {
-    "story": {
-      "name": $('#txt-name-story').val(),
-      "description": $('#txt-description-story').val(),
-      "typestory": $('#txt-type-story').val(),
-      "difficulty": $('#txt-difficulty-story').val(),
-      "project_id": _project_id,
+    "question": {
+      "questionOne": $('#txt-question-one').val(),
+      "questionTwo": $('#txt-question-two').val(),
+      "questionThree": $('#txt-question-three').val(),
+      "questionFour": $('#txt-question-four').val(),
+      "questionFive": $('#txt-question-five').val(),
+      "survey_id": _survey_id
     }
   }
 
-  $('#modal-create-story').modal('hide');
+  $('#modal-create-survey').modal('hide');
   $('body').removeClass('modal-open');
   $('.modal-backdrop').remove();
 
   ui.showProgress();
 
-  api.createStory(data)
+  api.createQuestions(data)
     .then((result) => {
-      clearFields(); showProjectStories();
+      clearFields(); showUserSurveys();
       ui.hideProgress();ui.showModalMessage('success');
     })
     .catch((error) => {
       ui.hideProgress(); ui.showModalMessage('error', error);
     });
 
+}
+const showDetail = () => {
+
+  ui.showProgress();
+
+  api.getSurveyQuestions(_survey_id)
+     .then((result) => {
+       console.log(result)
+       ui.hideProgress();
+       if(result.questions.length > 0) {
+
+          $('#div-detail').fadeIn();
+          $('#ul-survey-questions').empty();
+
+          $('#ul-survey-questions').append('<li>' + result.questions[0].questionOne + '</li>');
+          $('#ul-survey-questions').append('<li>' + result.questions[0].questionTwo + '</li>');
+          $('#ul-survey-questions').append('<li>' + result.questions[0].questionThree + '</li>');
+          $('#ul-survey-questions').append('<li>' + result.questions[0].questionFour + '</li>');
+          $('#ul-survey-questions').append('<li>' + result.questions[0].questionFive + '</li>');
+
+          // $.each(result.questions, (index, element) => {
+
+          //    // $('#table-survey-questions > tbody').append('<tr><td>' + element._id + '</td><td>' + element.questionOne + '</td><td>' + element.questionTwo + '</td><td><span class="text-info">' + element.questionThree + '</span></td><td><span class="text-info">' + element.questionFour + '</span></td><td><span class="text-info">' + element.questionFive + '</span></td><td><button id="btn-show-tasks' + index + '" type="button" class="btn btn-danger btn-fill btn-xs pull-right"><i class="fa fa-eye"></i>Show tasks</button>&nbsp;<button id="btn-add-task' + index + '" type="button" class="btn btn-danger btn-fill btn-xs pull-right"><i class="fa fa-plus"></i>Add task</button></td></tr>');
+          // });
+
+       } else {
+        ui.showModalMessage('ProjectHasNotStories');
+       }
+
+     })
+     .catch((error) => {
+       ui.hideProgress(); ui.showModalMessage('error', error);
+     });
 }
 const showProjectStories = () => {
 
@@ -331,14 +352,15 @@ const cancelEditProject = () => {
   $('#div-update-project').hide(); $('#div-details-project').fadeIn();
 }
 /*modals*/
-/* create project modal */
-const showModalProject = () => {
+/* create survey modal */
+const showModalCreateSurvey = () => {
 
-  $('#modal-create-project').modal({
+  $('#modal-create-survey').modal({
     backdrop: 'static',
     keyboard: false
   });
-  setTimeout(function(){ $('#txt-name-project').focus() }, 800);
+  $('#div-main').fadeIn(); $('#div-details-survey,#div-detail').hide();
+  setTimeout(function(){ $('#txt-name-survey').focus() }, 800);
 }
 /* create story modal */
 const showModalCreateStory = () => {
@@ -349,18 +371,13 @@ const showModalCreateStory = () => {
   });
   setTimeout(function(){ $('#txt-name-story').focus() }, 800);
 }
-
 /* clear fields */
 const clearFields = () => {
   $('.form-control').val('');
 }
-
 // manage the events
 const addHandlers = () => {
-
   // general handlers
-  $('#show-dashboard').on('click', showDashBoard);
-
   // user handlers
   $('#show-user-profile').on('click', showUserProfile);
   $('#btn-show-view-edit-profile').on('click', showViewEditProfile);
@@ -369,26 +386,30 @@ const addHandlers = () => {
   $('#cancel-edit-profile').on('click', cancelChangePassword);
   $('#edit-profile').on('submit', updateUserProfile);
 
-  // projects handlers
-  $('#show-user-projects').on('click', showUserProjects);
-  $('#create-project-form').on('submit', createNewProject);
-  $('#show-view-edit-project').on('click', showViewEditProject)
-  $('#cancel-edit-project').on('click', cancelEditProject)
+  // surveys
+  $('#create-survey-form').on('submit', createNewSurvey);
+  $('#show-user-surveys').on('click', showUsserSurveys);
+  $('#show-view-edit-project').on('click', showViewEditProject);
+  $('#cancel-edit-project').on('click', cancelEditProject);
   $('#update-project-form').on('submit', updateProject);
   $('#delete-project').on('click', deleteProject);
 
-  // project stories
+  // questions
   $('#show-project-stories').on('click', showProjectStories);
-  $('#create-story-form').on('submit', createNewStory);
+  $('#create-survey-questions').on('submit', createQuestions);
   $('#show-modal-create-story').on('click', showModalCreateStory);
+  $('#show-detail').on('click', showDetail);
 
   // tasks
   $('#create-task-form').on('submit', createNewTask);
 
   //modals
-  $('#show-modal-create-project').on('click', showModalProject);
+  $('#show-modal-create-survey').on('click', showModalCreateSurvey);
+
+  //$('#body').on('load', showSurveys);
 }
 
 module.exports = {
-  addHandlers
+  addHandlers,
+  showUserSurveys
 }
